@@ -1,5 +1,12 @@
 # Spring Cloud 后台管理框架
 
+使用微服务，请求走gateway，登录验证用oauth2，服务调用用feign，account用户中心集成了5张表的权限系统
+
+数据用Mybatis-plus，集成了动态数据dynamic-datasource
+
+缓存用redis，通过spring-cache调用
+
+集成了Swagger接口文档生成
 
 ## 集成项目
 
@@ -60,3 +67,4 @@ admin 123456
 3.  启动Passport OAuth2验证服务
 4.  启动用户账户服务 集成了基本权限5张表
 5.  启动前台VUE页面 npm run dev
+6.  接口文档访问 http://localhost:8410/doc.html

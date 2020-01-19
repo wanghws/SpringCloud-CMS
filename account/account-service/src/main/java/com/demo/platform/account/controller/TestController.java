@@ -34,8 +34,8 @@ public class TestController extends BaseController {
     private PasswordEncoder passwordEncoder;
 
     @ApiOperation(value = "重置admin密码")
-    @GetMapping("user")
-    public Response<User> test(){
+    @GetMapping("password")
+    public Response<User> password(){
 
         User user = new User();
         user.setId(1L);

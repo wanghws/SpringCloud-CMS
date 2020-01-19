@@ -5,7 +5,7 @@ From [vue-element-admin](http://panjiachen.github.io/vue-element-admin) is a pro
 
 ```bash
 # enter the project directory
-cd cbs
+cd cms
 
 # install dependency
 npm install

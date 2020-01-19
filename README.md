@@ -13,7 +13,6 @@
 - [Dynamic-Datasource](https://github.com/baomidou/dynamic-datasource-spring-boot-starter)
 - [Knife4j](https://github.com/xiaoymin/swagger-bootstrap-ui)
 - [Modelmapper](https://github.com/modelmapper/modelmapper)
-
 - [Vue-Element-Admin](https://github.com/PanJiaChen/vue-element-admin)
 
 
@@ -43,6 +42,7 @@ admin 123456
 - Gateway 8410
 - Passport 8420
 - Account 8430
+- CMS-VUE 9527
 
 ## 其他组件
 
@@ -52,3 +52,11 @@ admin 123456
 4.  spring-cloud-commons
 5.  guava
 6.  logback
+
+## 步骤
+
+1.  启动Eureka
+2.  启动Gateway
+3.  启动Passport OAuth2验证服务
+4.  启动用户账户服务 集成了基本权限5张表
+5.  启动前台VUE页面 npm run dev

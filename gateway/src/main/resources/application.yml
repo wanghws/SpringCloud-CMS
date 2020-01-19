@@ -1,0 +1,9 @@
+server:
+  port: 8410
+spring:
+  profiles:
+    active: dev
+  application:
+    name: @pom.artifactId@
+logging:
+  config: classpath:logback-spring.xml

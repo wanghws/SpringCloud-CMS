@@ -1,0 +1,12 @@
+.DS_Store
+.idea
+*.iml
+out
+gen
+.idea/
+*.class
+*.lst
+*.log
+*.logs
+target
+

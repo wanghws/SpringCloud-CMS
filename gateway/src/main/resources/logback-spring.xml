@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="false">
+    <conversionRule conversionWord="clr" converterClass="org.springframework.boot.logging.logback.ColorConverter" />
+    <conversionRule conversionWord="wex" converterClass="org.springframework.boot.logging.logback.WhitespaceThrowableProxyConverter" />
+    <conversionRule conversionWord="wEx" converterClass="org.springframework.boot.logging.logback.ExtendedWhitespaceThrowableProxyConverter" />
+
+    <springProperty scope="context" name="PROJECT_NAME" source="spring.application.name"/>
+
+    <springProfile name="dev">
+        <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+            <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+                <level>DEBUG</level>
+            </filter>
+            <encoder>
+                <pattern>%clr([%p] [%d] [%c.%M] %m%n)</pattern>
+                <charset>UTF-8</charset>
+            </encoder>
+        </appender>
+        <!-- debug log-->
+        <logger name="io.lettuce" level="WARN"/>
+        <logger name="com.github.xiaoymin" level="INFO"/>
+        <logger name="reactor.netty" level="INFO"/>
+        <logger name="com.netflix" level="WARN"/>
+        <logger name="org.thymeleaf" level="WARN"/>
+        <logger name="org.apache.http" level="INFO"/>
+        <logger name="com.alibaba.druid" level="INFO"/>
+        <logger name="org.mybatis" level="INFO"/>
+        <logger name="org.hibernate" level="INFO"/>
+        <logger name="io.netty" level="INFO"/>
+        <logger name="org.redisson" level="INFO"/>
+        <logger name="com.baomidou" level="INFO"/>
+        <logger name="springfox.documentation" level="WARN"/>
+        <logger name="org.springframework" level="INFO"/>
+        <logger name="org.apache.commons" level="INFO"/>
+        <logger name="druid.sql" level="INFO"/>
+        <logger name="java.sql.Connection" level="INFO"/>
+        <logger name="java.sql.Statement" level="INFO"/>
+        <logger name="java.sql.PreparedStatement" level="DEBUG"/>
+
+        <root level="DEBUG">
+            <appender-ref ref="STDOUT" />
+        </root>
+    </springProfile>
+
+
+    <springProfile name="test">
+        <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+            <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+                <level>DEBUG</level>
+            </filter>
+            <encoder>
+                <pattern>%clr([%p] [%d] [%c.%M] %m%n)</pattern>
+                <charset>UTF-8</charset>
+            </encoder>
+        </appender>
+
+        <appender name="ROLLING" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <file>/log/${PROJECT_NAME}.log</file>
+            <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                <FileNamePattern>researcher.%d{yyyy-MM-dd}.log</FileNamePattern>
+                <MaxHistory>7</MaxHistory>
+            </rollingPolicy>
+            <encoder>
+                <pattern>[%p] [%d] [%c.%M] %m%n</pattern>
+                <charset>UTF-8</charset>
+            </encoder>
+        </appender>
+
+        <!-- debug log-->
+        <logger name="io.lettuce" level="WARN"/>
+        <logger name="com.github.xiaoymin" level="INFO"/>
+        <logger name="com.netflix" level="WARN"/>
+        <logger name="org.thymeleaf" level="WARN"/>
+        <logger name="org.apache.http" level="INFO"/>
+        <logger name="com.alibaba.druid" level="INFO"/>
+        <logger name="org.mybatis" level="INFO"/>
+        <logger name="org.hibernate" level="INFO"/>
+        <logger name="io.netty" level="INFO"/>
+        <logger name="org.redisson" level="INFO"/>
+        <logger name="com.baomidou" level="INFO"/>
+        <logger name="springfox.documentation" level="WARN"/>
+        <logger name="org.springframework" level="INFO"/>
+        <logger name="org.apache.commons" level="INFO"/>
+        <logger name="druid.sql" level="INFO"/>
+        <logger name="java.sql.Connection" level="INFO"/>
+        <logger name="java.sql.Statement" level="INFO"/>
+        <logger name="java.sql.PreparedStatement" level="DEBUG"/>
+
+        <root level="DEBUG">
+            <appender-ref ref="STDOUT" />
+            <appender-ref ref="ROLLING" />
+        </root>
+
+    </springProfile>
+
+
+    <springProfile name="prod">
+        <appender name="ROLLING" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <file>/log/${PROJECT_NAME}.log</file>
+            <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                <FileNamePattern>researcher.%d{yyyy-MM-dd}.log</FileNamePattern>
+                <MaxHistory>7</MaxHistory>
+            </rollingPolicy>
+            <encoder>
+                <pattern>[%p] [%d] [%c.%M] %m%n</pattern>
+                <charset>UTF-8</charset>
+            </encoder>
+        </appender>
+
+
+        <root level="WARN">
+            <appender-ref ref="ROLLING" />
+        </root>
+
+    </springProfile>
+
+</configuration>

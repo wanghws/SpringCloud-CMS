@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.demo.platform.account.mapper.UserMapper">
+
+    <select id="findUserPage" resultType="com.demo.platform.account.entity.User">
+        SELECT su.*, so.name as officeName
+        FROM user AS su
+        LEFT JOIN office AS so
+        ON su.office_id = so.id
+        WHERE 1=1
+        <if test="user != null and user.status != null">
+            AND su.status = #{user.status}
+        </if>
+        <if test="user != null and user.email != '' and user.email != null">
+            AND su.email = #{user.email}
+        </if>
+        <if test="user != null and user.mobile != '' and user.email != null">
+            AND su.mobile = #{user.mobile}
+        </if>
+        <if test="user != null and user.loginName != '' and user.loginName != null">
+            AND su.login_name LIKE concat(#{user.loginName},'%')
+        </if>
+        <if test="user != null and user.officeName != '' and user.officeName != null">
+            AND so.name LIKE concat(#{user.officeName},'%')
+        </if>
+        <if test="user != null and user.regStartDate != null">
+            AND su.register_time &gt;= #{user.regStartDate}
+        </if>
+        <if test="user != null and user.regEndDate != null">
+            AND su.register_time &lt;= #{user.regEndDate}
+        </if>
+        <if test="user != null and user.loginStartDate != null">
+            AND su.login_time &gt;= #{user.loginStartDate}
+        </if>
+        <if test="user != null and user.loginEndDate != null">
+            AND su.login_time &lt;= #{user.loginEndDate}
+        </if>
+        ORDER BY su.register_time DESC
+
+    </select>
+    <select id="userRolesByUser" resultType="com.demo.platform.account.entity.UserRole">
+        SELECT sur.*,su.login_time AS userName, sr.name AS roleName
+        FROM user_role AS sur
+        LEFT JOIN user su
+        ON sur.user_id = su.id
+        LEFT JOIN role AS sr
+        ON sur.role_id = sr.id
+        LEFT JOIN user AS so
+        ON sur.operation_id = so.id
+        WHERE sur.status = 0
+        AND user_id = #{userId}
+    </select>
+</mapper>

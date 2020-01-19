@@ -1,0 +1,63 @@
+eureka:
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8400/eureka/
+security:
+  oauth2:
+    client:
+      client-id: web
+      client-secret: 123456
+      access-token-uri: http://localhost:8420/oauth/token
+      user-authorization-uri: http://localhost:8420/oauth/authorize
+      scope: web
+    resource:
+      user-info-uri: http://localhost:8420/user
+spring:
+  autoconfigure:
+    exclude: com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      stat-view-servlet:
+        loginUsername: admin
+        loginPassword: 123456
+    dynamic:
+      primary: master
+      druid:
+        initial-size: 1
+        max-active: 20
+        min-idle: 1
+        max-wait: 60000
+        time-between-eviction-runs-millis: 60000
+        min-evictable-idle-time-millis: 300000
+        test-on-return: false
+        validation-query: SELECT 'x'
+        filters: stat,wall
+      datasource:
+        master:
+          username: work
+          password: 123456
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          url: jdbc:mysql://192.168.1.22:3306/platform_account?useUnicode=true&useSSL=false&characterEncoding=utf8
+        slave_1:
+          username: work
+          password: 123456
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          url: jdbc:mysql://192.168.1.22:3306/platform_account?useUnicode=true&useSSL=false&characterEncoding=utf8
+  redis:
+    database: 0
+    host: 192.168.1.218
+    port: 6379
+    password: 123456
+    jedis:
+      pool:
+        max-active: 8
+        max-idle: 8
+        min-idle: 0
+mybatis-plus:
+  config-location: classpath:mybatis/mybatis-config.xml
+  mapper-locations: classpath:mapper/*.xml
+  type-enums-package: com.demo.platform.*.status

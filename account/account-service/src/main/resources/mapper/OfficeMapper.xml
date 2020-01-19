@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.demo.platform.account.mapper.OfficeMapper">
+    <select id="findOfficePage" resultType="com.demo.platform.account.entity.Office">
+        SELECT so.*,su.login_name AS operationName, pso.name AS parentName
+        FROM office AS so
+        LEFT JOIN office AS pso
+        ON so.parent_id = pso.id
+        LEFT JOIN user AS su
+        ON so.operation_id = su.id
+        WHERE 1=1
+        <if test="office != null and office.status != null">
+            AND so.status = #{office.status}
+        </if>
+        <if test="office != null and office.operationName != '' and office.operationName != null">
+            AND su.login_name LIKE concat(#{office.operationName},'%')
+        </if>
+        <if test="office != null and office.parentName != '' and office.parentName != null">
+            AND pso.name LIKE concat(#{office.parentName},'%')
+        </if>
+        <if test="office != null and office.name != '' and office.name != null">
+            AND so.name LIKE concat(#{office.name},'%')
+        </if>
+        <if test="office != null and office.startDate != null">
+            AND so.create_time &gt;= #{office.startDate}
+        </if>
+        <if test="office != null and office.endDate != null">
+            AND so.create_time &lt;= #{office.endDate}
+        </if>
+        ORDER BY so.create_time DESC
+    </select>
+</mapper>

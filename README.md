@@ -68,3 +68,11 @@ admin 123456
 4.  启动用户账户服务 集成了基本权限5张表
 5.  启动前台VUE页面 npm run dev
 6.  接口文档访问 http://localhost:8410/doc.html
+
+## 截图
+
+![avatar](screenshot/00.png)
+![avatar](screenshot/11.png)
+![avatar](screenshot/22.png)
+![avatar](screenshot/33.png)
+![avatar](screenshot/44.png)

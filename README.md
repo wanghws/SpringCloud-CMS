@@ -14,6 +14,8 @@
 - [Knife4j](https://github.com/xiaoymin/swagger-bootstrap-ui)
 - [Modelmapper](https://github.com/modelmapper/modelmapper)
 
+- [Vue-Element-Admin](https://github.com/PanJiaChen/vue-element-admin)
+
 
 ## 数据库初始化
 
@@ -24,14 +26,16 @@ CREATE DATABASE platform_account DEFAULT CHARACTER SET utf8 COLLATE utf8_general
 CREATE USER 'work'@'%' identified by '123456';
 GRANT ALL PRIVILEGES ON platform_account.* to 'work'@'%';
 
-source account/sql/account.sql
-source account/sql/init.sql
+source SpringCloud-CMS/account/account-service/sql/account.sql
+source SpringCloud-CMS/account/account-service/sql/init.sql
 
 ```
 
 ## 密码初始化
 
 curl -X GET "http://localhost:8430/test/password"
+
+admin 123456
 
 ## 端口
 

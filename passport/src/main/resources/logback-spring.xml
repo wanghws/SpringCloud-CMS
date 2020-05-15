@@ -57,7 +57,7 @@
         <appender name="ROLLING" class="ch.qos.logback.core.rolling.RollingFileAppender">
             <file>/log/${PROJECT_NAME}.log</file>
             <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-                <FileNamePattern>researcher.%d{yyyy-MM-dd}.log</FileNamePattern>
+                <FileNamePattern>/log/${PROJECT_NAME}.%d{yyyy-MM-dd}.log</FileNamePattern>
                 <MaxHistory>7</MaxHistory>
             </rollingPolicy>
             <encoder>
@@ -97,9 +97,12 @@
 
     <springProfile name="prod">
         <appender name="ROLLING" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+                <level>WARN</level>
+            </filter>
             <file>/log/${PROJECT_NAME}.log</file>
             <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-                <FileNamePattern>researcher.%d{yyyy-MM-dd}.log</FileNamePattern>
+                <FileNamePattern>/log/${PROJECT_NAME}.%d{yyyy-MM-dd}.log</FileNamePattern>
                 <MaxHistory>7</MaxHistory>
             </rollingPolicy>
             <encoder>

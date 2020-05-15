@@ -8,7 +8,7 @@ eureka:
 spring:
   redis:
     database: 0
-    host: 192.168.1.218
+    host: 192.168.1.221
     port: 6379
     password: 123456
     jedis:

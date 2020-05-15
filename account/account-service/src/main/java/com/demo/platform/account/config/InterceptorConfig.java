@@ -6,6 +6,7 @@ import com.demo.platform.account.interceptor.UserArgumentResolver;
 import org.springframework.boot.autoconfigure.jackson.Jackson2ObjectMapperBuilderCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -20,6 +21,7 @@ import java.util.List;
  */
 @Configuration
 public class InterceptorConfig implements WebMvcConfigurer {
+    @Lazy
     @Resource
     private LoginInterceptor loginInterceptor;
     @Override
